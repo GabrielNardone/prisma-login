@@ -46,7 +46,7 @@ export default function ForgotPasswordForm({
               <p>
                 Already have your code?{' '}
                 <Link
-                  className="font-medium text-blue-500"
+                  className="font-medium text-indigo-500"
                   to="/auth/confirm-password"
                   data-test="link-confirm-password"
                 >

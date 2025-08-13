@@ -51,6 +51,7 @@ class CookieService<T extends ITokenPayload> implements ICookieService<T> {
     try {
       return jwtDecode<T>(token);
     } catch (error) {
+      console.error(error);
       return null;
     }
   }

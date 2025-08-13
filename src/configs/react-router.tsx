@@ -1,4 +1,8 @@
-import { type RouteObject, createBrowserRouter } from 'react-router-dom';
+import {
+  Navigate,
+  type RouteObject,
+  createBrowserRouter,
+} from 'react-router-dom';
 
 import ConfirmPassword from '@/pages/auth/ConfirmPassword';
 import ConfirmUser from '@/pages/auth/ConfirmUser';
@@ -12,7 +16,7 @@ import Root from '@pages/Root';
 
 const authentication: RouteObject[] = [
   {
-    index: true,
+    path: 'auth/sign-in',
     element: <SignIn />,
   },
   {
@@ -45,7 +49,13 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <Root />,
-    children: [...authentication],
+    children: [
+      {
+        index: true,
+        element: <Navigate to="/auth/sign-in" replace />,
+      },
+      ...authentication,
+    ],
   },
 ]);
 

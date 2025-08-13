@@ -57,7 +57,7 @@ export default function SignUpForm({ handleSubmit, loading }: PropTypes) {
         <p>
           Already have an account?{' '}
           <Link
-            className="font-medium text-blue-500"
+            className="font-medium text-indigo-500"
             to="/auth/sign-in"
             data-test="link-sign-in"
           >
