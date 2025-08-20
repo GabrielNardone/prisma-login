@@ -49,7 +49,7 @@ export default function ResendConfirmationCodeForm({
               <p>
                 Already have your code?{' '}
                 <Link
-                  className="font-medium text-indigo-500"
+                  className="font-medium text-cyan-500"
                   to="/auth/confirm-user"
                   data-test="link-confirm-user"
                 >

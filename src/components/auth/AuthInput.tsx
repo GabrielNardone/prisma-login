@@ -18,15 +18,15 @@ export default function AuthInput({
   ...props
 }: PropTypes) {
   return (
-    <div className="relative my-4 flex min-h-14 w-full flex-col font-mono autofill:font-mono">
+    <div className="group relative my-4 flex min-h-14 w-full flex-col font-mono autofill:font-mono">
       <label
-        className="absolute top-[-8px] left-[16px] rounded-full bg-white px-1 text-xs font-light text-gray-400"
+        className="absolute top-[-8px] left-[16px] z-10 rounded-full bg-white px-2 text-xs font-light text-gray-500 transition-colors duration-200 group-focus-within:bg-cyan-500 group-focus-within:text-white"
         htmlFor={name}
       >
         {label}
       </label>
       <Field
-        className="focus:shadow-outline rounded-md border-[1px] border-gray-400 px-5 py-2 text-sm outline-none focus:border-blue-500 focus:shadow-blue-500/30 data-[error=true]:border-red-500"
+        className="focus:shadow-outline w-full rounded-md border-[1px] border-gray-400 px-5 py-2 text-sm outline-none focus:border-cyan-500 focus:shadow-cyan-500/30 data-[error=true]:border-rose-400"
         type={type}
         id={name}
         name={name}
@@ -37,7 +37,7 @@ export default function AuthInput({
       />
       <div className="h-3 w-full" data-test={`form-input-error-${name}`}>
         <ErrorMessage
-          className="w-full text-xs text-red-500"
+          className="w-full text-xs text-rose-400"
           name={name}
           component="p"
         />

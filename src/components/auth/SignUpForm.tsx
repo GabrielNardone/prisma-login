@@ -16,6 +16,9 @@ type PropTypes = {
 };
 export default function SignUpForm({ handleSubmit, loading }: PropTypes) {
   const initialValues = {
+    dniType: '',
+    dniNumber: '',
+    gender: '',
     username: '',
     password: '',
   };
@@ -30,6 +33,33 @@ export default function SignUpForm({ handleSubmit, loading }: PropTypes) {
         {({ errors, touched }) => (
           <AuthForm>
             <AuthTitle>Sign up</AuthTitle>
+            <AuthInput
+              name="dniType"
+              label="DNI Type"
+              type="text"
+              placeholder="DNI"
+              error={!!errors.dniType}
+              touched={touched.dniType}
+              data-test="sign-up-dni-type"
+            />
+            <AuthInput
+              name="dniNumber"
+              label="DNI Number"
+              type="text"
+              placeholder="32567932"
+              error={!!errors.dniNumber}
+              touched={touched.dniNumber}
+              data-test="sign-up-dni-number"
+            />
+            <AuthInput
+              name="gender"
+              label="Gender"
+              type="text"
+              placeholder="M/F"
+              error={!!errors.gender}
+              touched={touched.gender}
+              data-test="sign-up-gender"
+            />
             <AuthInput
               name="username"
               label="Username"
@@ -57,7 +87,7 @@ export default function SignUpForm({ handleSubmit, loading }: PropTypes) {
         <p>
           Already have an account?{' '}
           <Link
-            className="font-medium text-indigo-500"
+            className="font-medium text-cyan-500"
             to="/auth/sign-in"
             data-test="link-sign-in"
           >

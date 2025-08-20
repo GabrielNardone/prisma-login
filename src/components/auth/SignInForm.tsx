@@ -54,7 +54,7 @@ export default function SignInForm({ handleSubmit, loading }: PropTypes) {
               <p>
                 Forgot your password?{' '}
                 <Link
-                  className="font-medium text-indigo-500"
+                  className="font-medium text-cyan-500"
                   to="/auth/forgot-password"
                   data-test="link-forgot-password"
                 >
@@ -64,7 +64,7 @@ export default function SignInForm({ handleSubmit, loading }: PropTypes) {
               <p>
                 Don't have an account?{' '}
                 <Link
-                  className="font-medium text-indigo-500"
+                  className="font-medium text-cyan-500"
                   to="/auth/sign-up"
                   data-test="link-sign-up"
                 >
@@ -74,7 +74,7 @@ export default function SignInForm({ handleSubmit, loading }: PropTypes) {
               <p>
                 Account not confirmed?{' '}
                 <Link
-                  className="font-medium text-indigo-500"
+                  className="font-medium text-cyan-500"
                   to="/auth/confirm-user"
                   data-test="link-confirm-user"
                 >

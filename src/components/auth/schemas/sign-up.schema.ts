@@ -13,6 +13,9 @@ import {
 } from './schema-errors';
 
 export const signUpSchema = yup.object({
+  dniType: yup.string().required('DNI type is required'),
+  dniNumber: yup.string().required('DNI number is required'),
+  gender: yup.string().required('Gender is required'),
   username: yup.string().email(USERNAME_INVALID).required(USERNAME_REQUIRED),
   password: yup
     .string()

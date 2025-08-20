@@ -59,7 +59,7 @@ export default function ConfirmUserForm({ handleSubmit, loading }: PropTypes) {
               <p>
                 Didn't receive your code?{' '}
                 <Link
-                  className="font-medium text-indigo-500"
+                  className="font-medium text-cyan-500"
                   to="/auth/resend-confirmation-code"
                   data-test="link-resend-confirmation-code"
                 >
@@ -69,7 +69,7 @@ export default function ConfirmUserForm({ handleSubmit, loading }: PropTypes) {
               <p>
                 Already confirmed?{' '}
                 <Link
-                  className="font-medium text-indigo-500"
+                  className="font-medium text-cyan-500"
                   to="/auth/sign-in"
                   data-test="link-sign-in"
                 >

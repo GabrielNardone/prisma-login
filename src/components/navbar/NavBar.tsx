@@ -18,7 +18,7 @@ export default function NavBar() {
           data-test="admin-panel"
           href={import.meta.env.VITE_ADMIN_URL}
           target="_blank"
-          className={`m-2 flex h-8 w-fit items-center justify-center rounded-full bg-indigo-600 px-2 font-bold text-white shadow hover:bg-indigo-500`}
+          className={`m-2 flex h-8 w-fit items-center justify-center rounded-full bg-cyan-600 px-2 font-bold text-white shadow hover:bg-cyan-500`}
         >
           Admin Panel
         </a>

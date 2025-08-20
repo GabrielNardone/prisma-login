@@ -73,7 +73,7 @@ export default function ConfirmPasswordForm({
               <p>
                 Don't have a code?{' '}
                 <Link
-                  className="font-medium text-indigo-500"
+                  className="font-medium text-cyan-500"
                   to="/auth/forgot-password"
                   data-test="link-forgot-password"
                 >
@@ -83,7 +83,7 @@ export default function ConfirmPasswordForm({
               <p>
                 Already confirmed?{' '}
                 <Link
-                  className="font-medium text-indigo-500"
+                  className="font-medium text-cyan-500"
                   to="/auth/sign-in"
                   data-test="link-sign-in"
                 >
