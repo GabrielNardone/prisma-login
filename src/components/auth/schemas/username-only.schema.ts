@@ -1,7 +1,11 @@
 import * as yup from 'yup';
 
-import { USERNAME_INVALID, USERNAME_REQUIRED } from './schema-errors';
+import i18n from '@/i18n';
 
-export const usernameOnlySchema = yup.object({
-  username: yup.string().email(USERNAME_INVALID).required(USERNAME_REQUIRED),
-});
+export const getUsernameOnlySchema = () =>
+  yup.object({
+    username: yup
+      .string()
+      .email(i18n.t('auth.validation.usernameInvalid'))
+      .required(i18n.t('auth.validation.usernameRequired')),
+  });

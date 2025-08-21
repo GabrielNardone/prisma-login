@@ -1,12 +1,12 @@
 import * as yup from 'yup';
 
-import {
-  PASSWORD_REQUIRED,
-  USERNAME_INVALID,
-  USERNAME_REQUIRED,
-} from './schema-errors';
+import i18n from '@/i18n';
 
-export const signInSchema = yup.object({
-  username: yup.string().email(USERNAME_INVALID).required(USERNAME_REQUIRED),
-  password: yup.string().required(PASSWORD_REQUIRED),
-});
+export const getSignInSchema = () =>
+  yup.object({
+    username: yup
+      .string()
+      .email(i18n.t('auth.validation.usernameInvalid'))
+      .required(i18n.t('auth.validation.usernameRequired')),
+    password: yup.string().required(i18n.t('auth.validation.passwordRequired')),
+  });

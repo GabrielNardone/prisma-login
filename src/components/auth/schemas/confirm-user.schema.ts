@@ -1,20 +1,18 @@
 import * as yup from 'yup';
 
-import {
-  CODE_MIN_LENGTH,
-  CODE_REQUIRED,
-  CODE_TYPE,
-  USERNAME_INVALID,
-  USERNAME_REQUIRED,
-} from './schema-errors';
+import i18n from '@/i18n';
 
 const ONLY_NUMBERS_REGEX = /^\d+$/;
 
-export const confirmUserSchema = yup.object({
-  username: yup.string().email(USERNAME_INVALID).required(USERNAME_REQUIRED),
-  code: yup
-    .string()
-    .matches(ONLY_NUMBERS_REGEX, CODE_TYPE)
-    .min(6, CODE_MIN_LENGTH)
-    .required(CODE_REQUIRED),
-});
+export const getConfirmUserSchema = () =>
+  yup.object({
+    username: yup
+      .string()
+      .email(i18n.t('auth.validation.usernameInvalid'))
+      .required(i18n.t('auth.validation.usernameRequired')),
+    code: yup
+      .string()
+      .matches(ONLY_NUMBERS_REGEX, i18n.t('auth.validation.codeType'))
+      .min(6, i18n.t('auth.validation.codeMinLength'))
+      .required(i18n.t('auth.validation.codeRequired')),
+  });

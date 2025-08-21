@@ -1,7 +1,11 @@
+import { useTranslation } from '@/hooks/translation/useTranslation';
+
 type PropTypes = {
   loading?: boolean;
 };
 export default function AuthSubmit({ loading, ...props }: PropTypes) {
+  const { t } = useTranslation();
+
   if (loading)
     return (
       <div className="flex h-10 flex-1 items-start justify-center">
@@ -19,7 +23,7 @@ export default function AuthSubmit({ loading, ...props }: PropTypes) {
         className="w-full cursor-pointer rounded-md bg-cyan-600 px-4 py-1 font-medium text-white hover:bg-cyan-400"
         {...props}
       >
-        Submit
+        {t('auth.submit')}
       </button>
     </div>
   );

@@ -6,9 +6,9 @@ import axios, {
 import Cookies from 'universal-cookie';
 
 import { ApiResponseError } from '@/errors/ApiResponseError';
-import type { IHTTPRequestService } from '@/interfaces/IHTTPRequestService';
 import type { IApiResponseError } from '@/interfaces/api/IApiResponseError';
 import type { IRefreshSessionResponse } from '@/interfaces/auth/IRefreshSessionResponse';
+import type { IHTTPRequestService } from '@/interfaces/services/IHTTPRequestService';
 
 const accessToken = new Cookies('accessToken', { path: '/' });
 const refreshToken = new Cookies('refreshToken', { path: '/' });

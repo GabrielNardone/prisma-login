@@ -8,7 +8,9 @@ import AuthOr from './AuthOr';
 import AuthSub from './AuthSub';
 import AuthSubmit from './AuthSubmit';
 import AuthTitle from './AuthTitle';
-import { signInSchema } from './schemas/sign-in.schema';
+import { getSignInSchema } from './schemas/sign-in.schema';
+
+import { useTranslation } from '@/hooks/translation/useTranslation';
 
 type PropTypes = {
   handleSubmit: (username: string, password: string) => Promise<void>;
@@ -19,6 +21,8 @@ export default function SignInForm({ handleSubmit, loading }: PropTypes) {
     username: '',
     password: '',
   };
+  const { t } = useTranslation();
+  const signInSchema = getSignInSchema();
 
   return (
     <AuthContainer>
@@ -29,19 +33,19 @@ export default function SignInForm({ handleSubmit, loading }: PropTypes) {
       >
         {({ errors, touched }) => (
           <AuthForm>
-            <AuthTitle>Sign In</AuthTitle>
+            <AuthTitle>{t('auth.signIn')}</AuthTitle>
             <AuthInput
-              label="Username"
               name="username"
+              label={t('auth.forms.labels.username')}
               type="email"
-              placeholder="user@example.com"
+              placeholder={t('auth.forms.placeholders.username')}
               error={!!errors.username}
               touched={touched.username}
               data-test="sign-in-username"
             />
             <AuthInput
-              label="Password"
               name="password"
+              label={t('auth.forms.labels.newPassword')}
               type="password"
               placeholder="********"
               error={!!errors.password}
@@ -52,33 +56,33 @@ export default function SignInForm({ handleSubmit, loading }: PropTypes) {
             <AuthOr />
             <AuthSub>
               <p>
-                Forgot your password?{' '}
+                {t('auth.forms.links.forgotPassword')}{' '}
                 <Link
                   className="font-medium text-cyan-500"
                   to="/auth/forgot-password"
                   data-test="link-forgot-password"
                 >
-                  Click here
+                  {t('auth.forms.links.clickHere')}
                 </Link>
               </p>
               <p>
-                Don't have an account?{' '}
+                {t('auth.forms.links.noAccount')}{' '}
                 <Link
                   className="font-medium text-cyan-500"
                   to="/auth/sign-up"
                   data-test="link-sign-up"
                 >
-                  Sign up
+                  {t('auth.signUp')}
                 </Link>
               </p>
               <p>
-                Account not confirmed?{' '}
+                {t('auth.forms.links.accountNotConfirmed')}{' '}
                 <Link
                   className="font-medium text-cyan-500"
                   to="/auth/confirm-user"
                   data-test="link-confirm-user"
                 >
-                  Click here
+                  {t('auth.forms.links.clickHere')}
                 </Link>
               </p>
             </AuthSub>

@@ -8,7 +8,9 @@ import AuthOr from './AuthOr';
 import AuthSub from './AuthSub';
 import AuthSubmit from './AuthSubmit';
 import AuthTitle from './AuthTitle';
-import { usernameOnlySchema } from './schemas/username-only.schema';
+import { getUsernameOnlySchema } from './schemas/username-only.schema';
+
+import { useTranslation } from '@/hooks/translation/useTranslation';
 
 type PropTypes = {
   handleSubmit: (username: string) => Promise<void>;
@@ -21,6 +23,9 @@ export default function ForgotPasswordForm({
   const initialValues = {
     username: '',
   };
+  const { t } = useTranslation();
+  const usernameOnlySchema = getUsernameOnlySchema();
+
   return (
     <AuthContainer>
       <Formik
@@ -30,12 +35,12 @@ export default function ForgotPasswordForm({
       >
         {({ errors, touched }) => (
           <AuthForm>
-            <AuthTitle>Forgot Password</AuthTitle>
+            <AuthTitle>{t('auth.forms.titles.forgotPassword')}</AuthTitle>
             <AuthInput
               name="username"
-              label="Username"
+              label={t('auth.forms.labels.username')}
               type="email"
-              placeholder="user@example.com"
+              placeholder={t('auth.forms.placeholders.username')}
               error={!!errors.username}
               touched={touched.username}
               data-test="forgot-password-username"
@@ -44,13 +49,13 @@ export default function ForgotPasswordForm({
             <AuthOr />
             <AuthSub>
               <p>
-                Already have your code?{' '}
+                {t('auth.forms.links.alreadyHaveCode')}{' '}
                 <Link
                   className="font-medium text-cyan-500"
                   to="/auth/confirm-password"
                   data-test="link-confirm-password"
                 >
-                  Click here
+                  {t('auth.forms.links.clickHere')}
                 </Link>
               </p>
             </AuthSub>

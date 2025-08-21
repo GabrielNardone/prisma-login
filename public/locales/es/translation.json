@@ -1,0 +1,61 @@
+{
+  "auth": {
+    "submit": "Enviar",
+    "signIn": "Iniciar sesión",
+    "signUp": "Registrarse",
+    "or": "o",
+    "signInSuccess": "Inicio de sesión exitoso",
+    "signUpSuccess": "Registro exitoso",
+    "unrecognizedTokenError": "Error de token no reconocido",
+    "confirmationSent": "Se ha enviado un correo electrónico a tu dirección para confirmar tu cuenta.",
+    "sessionExpiredError": "Tu sesión ha expirado.\nPor favor, inicia sesión nuevamente.",
+    "signOutSuccess": "Has cerrado sesión exitosamente.",
+    "validation": {
+      "usernameInvalid": "El nombre de usuario debe ser un correo electrónico válido",
+      "usernameRequired": "El nombre de usuario es obligatorio",
+      "passwordRequired": "La contraseña es obligatoria",
+      "passwordMinLength": "La contraseña debe tener al menos 8 caracteres",
+      "passwordMaxLength": "La contraseña debe tener como máximo 50 caracteres",
+      "passwordLowercase": "La contraseña debe contener al menos 1 letra minúscula",
+      "passwordUppercase": "La contraseña debe contener al menos 1 letra mayúscula",
+      "passwordNumber": "La contraseña debe contener al menos 1 número",
+      "passwordSpecial": "La contraseña debe contener al menos 1 símbolo",
+      "codeRequired": "El código es obligatorio",
+      "codeMinLength": "El código debe tener al menos 6 caracteres",
+      "codeType": "El código solo debe contener números",
+      "dniRequired": "El número de DNI es obligatorio",
+      "dniTypeRequired": "El tipo de DNI es obligatorio",
+      "genderRequired": "El género es obligatorio"
+    },
+    "forms": {
+      "titles": {
+        "confirmPassword": "Confirmar contraseña",
+        "confirmUser": "Confirmar usuario",
+        "forgotPassword": "Olvidé mi contraseña",
+        "resendCode": "Reenviar código"
+      },
+      "labels": {
+        "username": "Nombre de usuario",
+        "newPassword": "Nueva contraseña",
+        "code": "Código",
+        "dniType": "Tipo de DNI",
+        "dniNumber": "Número de DNI",
+        "gender": "Género"
+      },
+      "placeholders": {
+        "username": "usuario@ejemplo.com"
+      },
+      "links": {
+        "dontHaveCode": "¿No tienes un código?",
+        "clickHere": "Haz clic aquí",
+        "alreadyConfirmed": "¿Ya confirmaste?",
+        "didntReceive": "¿No recibiste tu código?",
+        "alreadyHaveCode": "¿Ya tienes tu código?",
+        "forgotPassword": "¿Olvidaste tu contraseña?",
+        "accountNotConfirmed": "¿Cuenta no confirmada?",
+        "noAccount": "¿No tienes una cuenta?",
+        "alreadyHaveAccount": "¿Ya tienes una cuenta?"
+      }
+    }
+  }
+}

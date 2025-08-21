@@ -1,38 +1,29 @@
 import * as yup from 'yup';
 
-import {
-  CODE_MIN_LENGTH,
-  CODE_REQUIRED,
-  CODE_TYPE,
-  PASSWORD_LOWERCASE,
-  PASSWORD_MAX_LENGTH,
-  PASSWORD_MIN_LENGTH,
-  PASSWORD_NUMBER,
-  PASSWORD_REQUIRED,
-  PASSWORD_SPECIAL,
-  PASSWORD_UPPERCASE,
-  USERNAME_INVALID,
-  USERNAME_REQUIRED,
-} from './schema-errors';
+import i18n from '@/i18n';
 
-export const confirmPasswordSchema = yup.object({
-  username: yup.string().email(USERNAME_INVALID).required(USERNAME_REQUIRED),
-  code: yup
-    .number()
-    .typeError(CODE_TYPE)
-    .test(
-      'minLength',
-      CODE_MIN_LENGTH,
-      (val) => (val && val.toString().length >= 6) || false
-    )
-    .required(CODE_REQUIRED),
-  password: yup
-    .string()
-    .min(8, PASSWORD_MIN_LENGTH)
-    .max(50, PASSWORD_MAX_LENGTH)
-    .matches(/[a-z]/, PASSWORD_LOWERCASE)
-    .matches(/[A-Z]/, PASSWORD_UPPERCASE)
-    .matches(/[0-9]/, PASSWORD_NUMBER)
-    .matches(/\W/, PASSWORD_SPECIAL)
-    .required(PASSWORD_REQUIRED),
-});
+export const getConfirmPasswordSchema = () =>
+  yup.object({
+    username: yup
+      .string()
+      .email(i18n.t('auth.validation.usernameInvalid'))
+      .required(i18n.t('auth.validation.usernameRequired')),
+    code: yup
+      .number()
+      .typeError(i18n.t('auth.validation.codeType'))
+      .test(
+        'minLength',
+        i18n.t('auth.validation.codeMinLength'),
+        (val) => (val && val.toString().length >= 6) || false
+      )
+      .required(i18n.t('auth.validation.codeRequired')),
+    password: yup
+      .string()
+      .min(8, i18n.t('auth.validation.passwordMinLength'))
+      .max(50, i18n.t('auth.validation.passwordMaxLength'))
+      .matches(/[a-z]/, i18n.t('auth.validation.passwordLowercase'))
+      .matches(/[A-Z]/, i18n.t('auth.validation.passwordUppercase'))
+      .matches(/[0-9]/, i18n.t('auth.validation.passwordNumber'))
+      .matches(/\W/, i18n.t('auth.validation.passwordSpecial'))
+      .required(i18n.t('auth.validation.passwordRequired')),
+  });

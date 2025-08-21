@@ -1,6 +1,6 @@
 import { useCallback, useReducer } from 'react';
 
-import type { ILoadingState } from '../../interfaces/auth/ILoadingState';
+import type { ILoadingState } from '@/interfaces/auth/ILoadingState';
 
 type ActionType = 'SET_LOADING';
 export const SET_LOADING = 'SET_LOADING';
