@@ -8,7 +8,9 @@ import AuthOr from './AuthOr';
 import AuthSub from './AuthSub';
 import AuthSubmit from './AuthSubmit';
 import AuthTitle from './AuthTitle';
-import { signUpSchema } from './schemas/sign-up.schema';
+import { getSignUpSchema } from './schemas/sign-up.schema';
+
+import { useTranslation } from '@/hooks/translation/useTranslation';
 
 type PropTypes = {
   handleSubmit: (username: string, password: string) => Promise<void>;
@@ -22,6 +24,8 @@ export default function SignUpForm({ handleSubmit, loading }: PropTypes) {
     username: '',
     password: '',
   };
+  const { t } = useTranslation();
+  const signUpSchema = getSignUpSchema();
 
   return (
     <AuthContainer>
@@ -32,10 +36,10 @@ export default function SignUpForm({ handleSubmit, loading }: PropTypes) {
       >
         {({ errors, touched }) => (
           <AuthForm>
-            <AuthTitle>Sign up</AuthTitle>
+            <AuthTitle>{t('auth.signUp')}</AuthTitle>
             <AuthInput
               name="dniType"
-              label="DNI Type"
+              label={t('auth.forms.labels.dniType')}
               type="text"
               placeholder="DNI"
               error={!!errors.dniType}
@@ -44,7 +48,7 @@ export default function SignUpForm({ handleSubmit, loading }: PropTypes) {
             />
             <AuthInput
               name="dniNumber"
-              label="DNI Number"
+              label={t('auth.forms.labels.dniNumber')}
               type="text"
               placeholder="32567932"
               error={!!errors.dniNumber}
@@ -53,7 +57,7 @@ export default function SignUpForm({ handleSubmit, loading }: PropTypes) {
             />
             <AuthInput
               name="gender"
-              label="Gender"
+              label={t('auth.forms.labels.gender')}
               type="text"
               placeholder="M/F"
               error={!!errors.gender}
@@ -62,16 +66,16 @@ export default function SignUpForm({ handleSubmit, loading }: PropTypes) {
             />
             <AuthInput
               name="username"
-              label="Username"
+              label={t('auth.forms.labels.username')}
               type="email"
-              placeholder="user@example.com"
+              placeholder={t('auth.forms.placeholders.username')}
               error={!!errors.username}
               touched={touched.username}
               data-test="sign-up-username"
             />
             <AuthInput
               name="password"
-              label="Password"
+              label={t('auth.forms.labels.newPassword')}
               type="password"
               placeholder="********"
               error={!!errors.password}
@@ -85,13 +89,13 @@ export default function SignUpForm({ handleSubmit, loading }: PropTypes) {
       <AuthOr />
       <AuthSub>
         <p>
-          Already have an account?{' '}
+          {t('auth.forms.links.alreadyHaveAccount')}{' '}
           <Link
             className="font-medium text-cyan-500"
             to="/auth/sign-in"
             data-test="link-sign-in"
           >
-            Sign in
+            {t('auth.signIn')}
           </Link>
         </p>
       </AuthSub>

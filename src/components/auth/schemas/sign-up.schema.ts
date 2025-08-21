@@ -1,29 +1,23 @@
 import * as yup from 'yup';
 
-import {
-  PASSWORD_LOWERCASE,
-  PASSWORD_MAX_LENGTH,
-  PASSWORD_MIN_LENGTH,
-  PASSWORD_NUMBER,
-  PASSWORD_REQUIRED,
-  PASSWORD_SPECIAL,
-  PASSWORD_UPPERCASE,
-  USERNAME_INVALID,
-  USERNAME_REQUIRED,
-} from './schema-errors';
+import i18n from '@/i18n';
 
-export const signUpSchema = yup.object({
-  dniType: yup.string().required('DNI type is required'),
-  dniNumber: yup.string().required('DNI number is required'),
-  gender: yup.string().required('Gender is required'),
-  username: yup.string().email(USERNAME_INVALID).required(USERNAME_REQUIRED),
-  password: yup
-    .string()
-    .required(PASSWORD_REQUIRED)
-    .min(8, PASSWORD_MIN_LENGTH)
-    .max(50, PASSWORD_MAX_LENGTH)
-    .matches(/[a-z]/, PASSWORD_LOWERCASE)
-    .matches(/[A-Z]/, PASSWORD_UPPERCASE)
-    .matches(/[0-9]/, PASSWORD_NUMBER)
-    .matches(/\W/, PASSWORD_SPECIAL),
-});
+export const getSignUpSchema = () =>
+  yup.object({
+    dniType: yup.string().required(i18n.t('auth.validation.dniTypeRequired')),
+    dniNumber: yup.string().required(i18n.t('auth.validation.dniRequired')),
+    gender: yup.string().required(i18n.t('auth.validation.genderRequired')),
+    username: yup
+      .string()
+      .email(i18n.t('auth.validation.usernameInvalid'))
+      .required(i18n.t('auth.validation.usernameRequired')),
+    password: yup
+      .string()
+      .required(i18n.t('auth.validation.passwordRequired'))
+      .min(8, i18n.t('auth.validation.passwordMinLength'))
+      .max(50, i18n.t('auth.validation.passwordMaxLength'))
+      .matches(/[a-z]/, i18n.t('auth.validation.passwordLowercase'))
+      .matches(/[A-Z]/, i18n.t('auth.validation.passwordUppercase'))
+      .matches(/[0-9]/, i18n.t('auth.validation.passwordNumber'))
+      .matches(/\W/, i18n.t('auth.validation.passwordSpecial')),
+  });

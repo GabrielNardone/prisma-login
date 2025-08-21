@@ -1,19 +1,15 @@
-import { useCookies } from 'react-cookie';
-
-import Action from './Action';
-
-import { StoredCookies } from '@/interfaces/auth/cookies.enum';
+import { LanguageSwitcher } from '../language/LanguageSwitcher';
 
 export default function NavBar() {
-  const [cookies] = useCookies([
-    StoredCookies.USERNAME,
-    StoredCookies.REFRESH_TOKEN,
-  ]);
-  const connected =
-    !!cookies[StoredCookies.REFRESH_TOKEN] && !!cookies[StoredCookies.USERNAME];
+  // const [cookies] = useCookies([
+  //   StoredCookies.USERNAME,
+  //   StoredCookies.REFRESH_TOKEN,
+  // ]);
+  // const connected =
+  //   !!cookies[StoredCookies.REFRESH_TOKEN] && !!cookies[StoredCookies.USERNAME];
   return (
     <div className="flex justify-end gap-4 p-2">
-      {connected && (
+      {/* {connected && (
         <a
           data-test="admin-panel"
           href={import.meta.env.VITE_ADMIN_URL}
@@ -23,7 +19,8 @@ export default function NavBar() {
           Admin Panel
         </a>
       )}
-      <Action connected={connected} />
+      <Action connected={connected} /> */}
+      <LanguageSwitcher />
     </div>
   );
 }

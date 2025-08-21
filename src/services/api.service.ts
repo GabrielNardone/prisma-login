@@ -1,8 +1,8 @@
 import type { AxiosRequestConfig } from 'axios';
 
 import { axiosService } from '@/configs/axios';
-import type { IHTTPRequestService } from '@/interfaces/IHTTPRequestService';
 import type { IApiService } from '@/interfaces/services/IApiService';
+import type { IHTTPRequestService } from '@/interfaces/services/IHTTPRequestService';
 
 class ApiService<C = unknown> implements IApiService<C> {
   httpService: IHTTPRequestService<C>;

@@ -1,0 +1,67 @@
+{
+  "auth": {
+    "submit": "Submit",
+    "signIn": "Sign in",
+    "signUp": "Sign up",
+    "or": "or",
+    "signInSuccess": "Sign in successful",
+    "signUpSuccess": "Sign up successful",
+    "unrecognizedTokenError": "Unrecognized token error",
+    "confirmationSent": "An e-mail has been sent to your address to confirm your account.",
+    "sessionExpiredError": "Your session has expired.\nPlease sign in again.",
+    "signOutSuccess": "You have successfully signed out.",
+    "validation": {
+      "usernameInvalid": "Username must be a valid e-mail",
+      "usernameRequired": "Username is required",
+      "passwordRequired": "Password is required",
+      "passwordMinLength": "Password should have at least 8 characters",
+      "passwordMaxLength": "Password should have at most 50 characters",
+      "passwordLowercase": "Password must contain at least 1 lowercase letter",
+      "passwordUppercase": "Password must contain at least 1 uppercase letter",
+      "passwordNumber": "Password must contain at least 1 number",
+      "passwordSpecial": "Password must contain at least 1 symbol",
+      "codeRequired": "Code is required",
+      "codeMinLength": "Code should have at least 6 characters",
+      "codeType": "Code should only contain numbers",
+      "dniRequired": "DNI number is required",
+      "dniTypeRequired": "DNI type is required",
+      "genderRequired": "Gender is required"
+    },
+    "forms": {
+      "titles": {
+        "confirmPassword": "Confirm password",
+        "confirmUser": "Confirm user",
+        "forgotPassword": "Forgot password",
+        "resendCode": "Resend code"
+      },
+      "labels": {
+        "username": "Username",
+        "newPassword": "New Password",
+        "code": "Code",
+        "dniType": "DNI Type",
+        "dniNumber": "DNI Number",
+        "gender": "Gender"
+      },
+      "placeholders": {
+        "username": "user@example.com"
+      },
+      "links": {
+        "dontHaveCode": "Don't have a code?",
+        "clickHere": "Click here",
+        "alreadyConfirmed": "Already confirmed?",
+        "didntReceive": "Didn't receive your code?",
+        "alreadyHaveCode": "Already have your code?",
+        "forgotPassword": "Forgot your password?",
+        "accountNotConfirmed": "Account not confirmed?",
+        "noAccount": "Don't have an account?",
+        "alreadyHaveAccount": "Already have an account?"
+      }
+    },
+    "unknownError": {
+      "signIn": "Unknown error when requesting user confirmation",
+      "signUn": "Unknown error when signing up",
+      "password": "Unknown error when requesting password change",
+      "refresh": "Unexpected error while refreshing your session.\nPlease sign in again."
+    }
+  }
+}

@@ -2,15 +2,9 @@ import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { AuthContext } from './AuthContext';
-import {
-  CONFIRMATION_SENT_MESSAGE,
-  SESSION_EXPIRED_ERROR,
-  SIGN_IN_SUCCESS_MESSAGE,
-  SIGN_OUT_SUCCESS_MESSAGE,
-  SIGN_UP_SUCCESS_MESSAGE,
-} from './auth-messages';
 
 import { useLoadingState } from '@/hooks/auth/useAuthState';
+import { useTranslation } from '@/hooks/translation/useTranslation';
 import { StoredCookies } from '@/interfaces/auth/cookies.enum';
 import { apiService } from '@/services/api.service';
 import { authService } from '@/services/auth.service';
@@ -21,6 +15,8 @@ type PropTypes = { children: React.ReactNode };
 export const AuthProvider = ({ children }: PropTypes) => {
   const { loadingState, setLoadingState } = useLoadingState();
   const navigate = useNavigate();
+  const { t } = useTranslation();
+
   const handleSignIn = useCallback(
     (username: string, password: string) => {
       async function signIn(username: string, password: string) {
@@ -34,14 +30,14 @@ export const AuthProvider = ({ children }: PropTypes) => {
           cookieService.setRefreshTokenCookie(refreshToken);
           cookieService.setUsernameCookie(username);
           apiService.setAuthentication(accessToken);
-          notificationService.success(SIGN_IN_SUCCESS_MESSAGE);
+          notificationService.success(t('auth.signInSuccess'));
           navigate('/about');
         } catch (error: unknown) {
           if (error instanceof Error) {
             notificationService.error(error.message);
           } else {
             notificationService.error(
-              `Unknown error when requesting user confirmation: ${error}`
+              `${t('auth.unknownError.signIn')}: ${error}`
             );
           }
         } finally {
@@ -50,7 +46,7 @@ export const AuthProvider = ({ children }: PropTypes) => {
       }
       return signIn(username, password);
     },
-    [setLoadingState, navigate]
+    [setLoadingState, navigate, t]
   );
 
   const handleSignUp = useCallback(
@@ -59,15 +55,15 @@ export const AuthProvider = ({ children }: PropTypes) => {
         setLoadingState('signUp', true);
         try {
           await authService.signUp(username, password);
-          notificationService.success(CONFIRMATION_SENT_MESSAGE);
-          notificationService.success(SIGN_UP_SUCCESS_MESSAGE);
+          notificationService.success(t('auth.confirmationSent'));
+          notificationService.success(t('auth.signUpSuccess'));
           navigate('/auth/confirm-user');
         } catch (error: unknown) {
           if (error instanceof Error) {
             notificationService.error(error.message);
           } else {
             notificationService.error(
-              `Unknown error when signing up: ${error}`
+              `${t('auth.unknownError.signUn')}: ${error}`
             );
           }
         } finally {
@@ -76,7 +72,7 @@ export const AuthProvider = ({ children }: PropTypes) => {
       }
       return signUp(username, password);
     },
-    [setLoadingState, navigate]
+    [setLoadingState, navigate, t]
   );
 
   const handleConfirmUser = useCallback(
@@ -92,7 +88,7 @@ export const AuthProvider = ({ children }: PropTypes) => {
             notificationService.error(error.message);
           } else {
             notificationService.error(
-              `Unknown error when requesting user confirmation: ${error}`
+              `${t('auth.unknownError.signIn')}: ${error}`
             );
           }
         } finally {
@@ -101,13 +97,13 @@ export const AuthProvider = ({ children }: PropTypes) => {
       }
       return confirmUser(username, code);
     },
-    [setLoadingState, navigate]
+    [setLoadingState, navigate, t]
   );
 
   const handleSignOut = useCallback(() => {
     cookieService.removeAll();
-    notificationService.success(SIGN_OUT_SUCCESS_MESSAGE);
-  }, []);
+    notificationService.success(t('auth.signOutSuccess'));
+  }, [t]);
 
   const handleForgotPassword = useCallback(
     (username: string) => {
@@ -121,7 +117,7 @@ export const AuthProvider = ({ children }: PropTypes) => {
             notificationService.error(error.message);
           } else {
             notificationService.error(
-              `Unknown error when requesting password change: ${error}`
+              `${t('auth.unknownError.password')}: ${error}`
             );
           }
         } finally {
@@ -130,7 +126,7 @@ export const AuthProvider = ({ children }: PropTypes) => {
       }
       return forgotPassword(username);
     },
-    [setLoadingState]
+    [setLoadingState, t]
   );
 
   const handleConfirmPassword = useCallback(
@@ -154,7 +150,7 @@ export const AuthProvider = ({ children }: PropTypes) => {
             notificationService.error(error.message);
           } else {
             notificationService.error(
-              `Unknown error when requesting password change confirmation: ${error}`
+              `${t('auth.unknownError.password')}: ${error}`
             );
           }
         } finally {
@@ -163,7 +159,7 @@ export const AuthProvider = ({ children }: PropTypes) => {
       }
       return confirmPassword(username, newPassword, code);
     },
-    [setLoadingState, navigate]
+    [setLoadingState, navigate, t]
   );
 
   const handleResendConfirmationCode = useCallback(
@@ -179,7 +175,7 @@ export const AuthProvider = ({ children }: PropTypes) => {
             notificationService.error(error.message);
           } else {
             notificationService.error(
-              `Unknown error when requesting password change confirmation: ${error}`
+              `${t('auth.unknownError.password')}: ${error}`
             );
           }
         } finally {
@@ -188,7 +184,7 @@ export const AuthProvider = ({ children }: PropTypes) => {
       }
       return resendConfirmationCode(username);
     },
-    [setLoadingState, navigate]
+    [setLoadingState, navigate, t]
   );
 
   const handleRefreshSession = useCallback(() => {
@@ -201,7 +197,7 @@ export const AuthProvider = ({ children }: PropTypes) => {
         const refreshToken =
           cookieService.getCookie(StoredCookies.REFRESH_TOKEN) || '';
         if (!username || !refreshToken) {
-          throw new Error(SESSION_EXPIRED_ERROR);
+          throw new Error(t('auth.sessionExpiredError'));
         }
 
         if (!accessToken) {
@@ -216,14 +212,11 @@ export const AuthProvider = ({ children }: PropTypes) => {
       } catch (error) {
         navigate('auth/sign-in');
         if (error instanceof Error) notificationService.error(error.message);
-        else
-          notificationService.error(
-            'Unexpected error while refreshing your session.\nPlease sign in again.'
-          );
+        else notificationService.error(t('auth.unknownError.refresh'));
       }
     }
     return refreshSession();
-  }, [setLoadingState, navigate]);
+  }, [setLoadingState, navigate, t]);
 
   const contextValue = {
     loadingState,

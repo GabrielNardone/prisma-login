@@ -8,7 +8,9 @@ import AuthOr from './AuthOr';
 import AuthSub from './AuthSub';
 import AuthSubmit from './AuthSubmit';
 import AuthTitle from './AuthTitle';
-import { confirmPasswordSchema } from './schemas/confirm-password.schema';
+import { getConfirmPasswordSchema } from './schemas/confirm-password.schema';
+
+import { useTranslation } from '@/hooks/translation/useTranslation';
 
 type PropTypes = {
   handleSubmit: (
@@ -27,31 +29,33 @@ export default function ConfirmPasswordForm({
     code: '',
     password: '',
   };
+  const { t } = useTranslation();
+  const passwordSchema = getConfirmPasswordSchema();
 
   return (
     <AuthContainer>
       <Formik
         initialValues={initialValues}
-        validationSchema={confirmPasswordSchema}
+        validationSchema={passwordSchema}
         onSubmit={({ username, password, code }) =>
           handleSubmit(username, password, code.toString())
         }
       >
         {({ errors, touched }) => (
           <AuthForm>
-            <AuthTitle>Confirm password</AuthTitle>
+            <AuthTitle>{t('auth.forms.titles.confirmPassword')}</AuthTitle>
             <AuthInput
               name="username"
-              label="Username"
+              label={t('auth.forms.labels.username')}
               type="email"
-              placeholder="user@example.com"
+              placeholder={t('auth.forms.placeholders.username')}
               error={!!errors.username}
               touched={touched.username}
               data-test="confirm-password-username"
             />
             <AuthInput
               name="password"
-              label="New Password"
+              label={t('auth.forms.labels.newPassword')}
               type="password"
               placeholder="********"
               error={!!errors.password}
@@ -60,9 +64,9 @@ export default function ConfirmPasswordForm({
             />
             <AuthInput
               name="code"
-              label="Code"
+              label={t('auth.forms.labels.code')}
               type="tel"
-              placeholder="123456"
+              placeholder="hD123#4L56*c"
               error={!!errors.code}
               touched={touched.code}
               data-test="confirm-password-code"
@@ -71,23 +75,23 @@ export default function ConfirmPasswordForm({
             <AuthOr />
             <AuthSub>
               <p>
-                Don't have a code?{' '}
+                {t('auth.forms.links.dontHaveCode')}{' '}
                 <Link
                   className="font-medium text-cyan-500"
                   to="/auth/forgot-password"
                   data-test="link-forgot-password"
                 >
-                  Click here
+                  {t('auth.forms.links.clickHere')}
                 </Link>
               </p>
               <p>
-                Already confirmed?{' '}
+                {t('auth.forms.links.alreadyConfirmed')}{' '}
                 <Link
                   className="font-medium text-cyan-500"
                   to="/auth/sign-in"
                   data-test="link-sign-in"
                 >
-                  Sign in
+                  {t('auth.signIn')}
                 </Link>
               </p>
             </AuthSub>

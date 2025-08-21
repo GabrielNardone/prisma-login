@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import NavBar from '@/components/navbar/NavBar';
 import { AuthProvider } from '@/context/AuthProvider';
 
 export default function Root() {
@@ -10,7 +11,8 @@ export default function Root() {
     <>
       <CookiesProvider>
         <AuthProvider>
-          <div id="pages" className="flex min-h-screen flex-1">
+          <div id="pages" className="min-h-screen">
+            <NavBar />
             <Outlet />
           </div>
         </AuthProvider>

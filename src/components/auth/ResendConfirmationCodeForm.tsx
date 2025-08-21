@@ -8,7 +8,9 @@ import AuthOr from './AuthOr';
 import AuthSub from './AuthSub';
 import AuthSubmit from './AuthSubmit';
 import AuthTitle from './AuthTitle';
-import { usernameOnlySchema } from './schemas/username-only.schema';
+import { getUsernameOnlySchema } from './schemas/username-only.schema';
+
+import { useTranslation } from '@/hooks/translation/useTranslation';
 
 type PropTypes = {
   handleSubmit: (username: string) => Promise<void>;
@@ -21,6 +23,9 @@ export default function ResendConfirmationCodeForm({
   const initialValues = {
     username: '',
   };
+  const { t } = useTranslation();
+  const usernameOnlySchema = getUsernameOnlySchema();
+
   return (
     <AuthContainer>
       <Formik
@@ -30,12 +35,12 @@ export default function ResendConfirmationCodeForm({
       >
         {({ errors, touched }) => (
           <AuthForm>
-            <AuthTitle>Resend code</AuthTitle>
+            <AuthTitle>{t('auth.forms.titles.confirmPassword')}</AuthTitle>
             <AuthInput
               name="username"
-              label="Username"
+              label={t('auth.forms.labels.username')}
               type="email"
-              placeholder="user@example.com"
+              placeholder={t('auth.forms.placeholders.username')}
               error={!!errors.username}
               touched={touched.username}
               data-test="resend-confirmation-code-username"
@@ -47,13 +52,13 @@ export default function ResendConfirmationCodeForm({
             <AuthOr />
             <AuthSub>
               <p>
-                Already have your code?{' '}
+                {t('auth.forms.links.alreadyHaveCode')}{' '}
                 <Link
                   className="font-medium text-cyan-500"
                   to="/auth/confirm-user"
                   data-test="link-confirm-user"
                 >
-                  Click here
+                  {t('auth.forms.links.clickHere')}
                 </Link>
               </p>
             </AuthSub>

@@ -8,9 +8,10 @@ import AuthOr from './AuthOr';
 import AuthSub from './AuthSub';
 import AuthSubmit from './AuthSubmit';
 import AuthTitle from './AuthTitle';
-import { confirmUserSchema } from './schemas/confirm-user.schema';
+import { getConfirmUserSchema } from './schemas/confirm-user.schema';
 
 import { useConfirmationLink } from '@/hooks/auth/useConfirmationLink';
+import { useTranslation } from '@/hooks/translation/useTranslation';
 
 type PropTypes = {
   handleSubmit: (username: string, code: string) => Promise<void>;
@@ -22,6 +23,8 @@ export default function ConfirmUserForm({ handleSubmit, loading }: PropTypes) {
     username: '',
     code: '',
   };
+  const { t } = useTranslation();
+  const confirmUserSchema = getConfirmUserSchema();
 
   return (
     <AuthContainer>
@@ -34,21 +37,21 @@ export default function ConfirmUserForm({ handleSubmit, loading }: PropTypes) {
       >
         {({ errors, touched }) => (
           <AuthForm>
-            <AuthTitle>Confirm user</AuthTitle>
+            <AuthTitle>{t('auth.forms.titles.confirmUser')}</AuthTitle>
             <AuthInput
               name="username"
-              label="Username"
+              label={t('auth.forms.labels.username')}
               type="email"
-              placeholder="user@example.com"
+              placeholder={t('auth.forms.placeholders.username')}
               error={!!errors.username}
               touched={touched.username}
               data-test="confirm-user-username"
             />
             <AuthInput
               name="code"
-              label="Code"
+              label={t('auth.forms.labels.code')}
               type="tel"
-              placeholder="123456"
+              placeholder="hD123#4L56*c"
               error={!!errors.code}
               touched={touched.code}
               data-test="confirm-user-code"
@@ -57,23 +60,23 @@ export default function ConfirmUserForm({ handleSubmit, loading }: PropTypes) {
             <AuthOr />
             <AuthSub>
               <p>
-                Didn't receive your code?{' '}
+                {t('auth.forms.links.didntReceive')}{' '}
                 <Link
                   className="font-medium text-cyan-500"
                   to="/auth/resend-confirmation-code"
                   data-test="link-resend-confirmation-code"
                 >
-                  Click here
+                  {t('auth.forms.links.clickHere')}
                 </Link>
               </p>
               <p>
-                Already confirmed?{' '}
+                {t('auth.forms.links.alreadyConfirmed')}{' '}
                 <Link
                   className="font-medium text-cyan-500"
                   to="/auth/sign-in"
                   data-test="link-sign-in"
                 >
-                  Sign in
+                  {t('auth.signIn')}
                 </Link>
               </p>
             </AuthSub>
