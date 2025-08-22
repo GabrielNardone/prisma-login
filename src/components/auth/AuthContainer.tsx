@@ -1,4 +1,4 @@
-import type { IReactChildrenProps } from '@/interfaces/IReactChildren';
+import type { IReactChildrenProps } from '@/interfaces/components/IReactChildren';
 
 export default function AuthContainer({ children }: IReactChildrenProps) {
   return (

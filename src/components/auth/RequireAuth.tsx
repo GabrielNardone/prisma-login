@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 import { useAuthProvider } from '@/hooks/auth/useAuthProvider';
-import type { IReactChildrenProps } from '@/interfaces/IReactChildren';
+import type { IReactChildrenProps } from '@/interfaces/components/IReactChildren';
 
 export default function RequireAuth({ children }: IReactChildrenProps) {
   const { handleRefreshSession, loadingState } = useAuthProvider();

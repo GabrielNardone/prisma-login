@@ -5,8 +5,8 @@ import { AuthContext } from './AuthContext';
 
 import { useLoadingState } from '@/hooks/auth/useAuthState';
 import { useTranslation } from '@/hooks/translation/useTranslation';
-import type { IReactChildrenProps } from '@/interfaces/IReactChildren';
 import { StoredCookies } from '@/interfaces/auth/cookies.enum';
+import type { IReactChildrenProps } from '@/interfaces/components/IReactChildren';
 import { apiService } from '@/services/api.service';
 import { authService } from '@/services/auth.service';
 import { cookieService } from '@/services/cookie.service';

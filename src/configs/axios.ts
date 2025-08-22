@@ -203,7 +203,7 @@ function createAxiosService(
   instance: AxiosInstance
 ): IHTTPRequestService<AxiosRequestConfig> {
   return {
-    get: async <T,>(url: string, config?: AxiosRequestConfig): Promise<T> => {
+    get: async <T>(url: string, config?: AxiosRequestConfig): Promise<T> => {
       const response = await instance.get<T>(url, config);
       return response.data;
     },
@@ -235,10 +235,7 @@ function createAxiosService(
       return response.data;
     },
 
-    delete: async <T,>(
-      url: string,
-      config?: AxiosRequestConfig
-    ): Promise<T> => {
+    delete: async <T>(url: string, config?: AxiosRequestConfig): Promise<T> => {
       const response = await instance.delete<T>(url, config);
       return response.data;
     },
