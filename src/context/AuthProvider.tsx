@@ -5,14 +5,14 @@ import { AuthContext } from './AuthContext';
 
 import { useLoadingState } from '@/hooks/auth/useAuthState';
 import { useTranslation } from '@/hooks/translation/useTranslation';
+import type { IReactChildrenProps } from '@/interfaces/IReactChildren';
 import { StoredCookies } from '@/interfaces/auth/cookies.enum';
 import { apiService } from '@/services/api.service';
 import { authService } from '@/services/auth.service';
 import { cookieService } from '@/services/cookie.service';
 import { notificationService } from '@/services/notification.service';
 
-type PropTypes = { children: React.ReactNode };
-export const AuthProvider = ({ children }: PropTypes) => {
+export const AuthProvider = ({ children }: IReactChildrenProps) => {
   const { loadingState, setLoadingState } = useLoadingState();
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -63,7 +63,7 @@ export const AuthProvider = ({ children }: PropTypes) => {
             notificationService.error(error.message);
           } else {
             notificationService.error(
-              `${t('auth.unknownError.signUn')}: ${error}`
+              `${t('auth.unknownError.signUp')}: ${error}`
             );
           }
         } finally {
@@ -205,7 +205,7 @@ export const AuthProvider = ({ children }: PropTypes) => {
             username,
             refreshToken
           );
-          cookieService.setAccessTokenCookie(accessToken);
+          cookieService.setAccessTokenCookie(response.accessToken);
           apiService.setAuthentication(response.accessToken);
         }
         setLoadingState('refreshSession', false);

@@ -9,9 +9,11 @@ import type { IAuthService } from '@/interfaces/services/IAuthService';
 
 class AuthService implements IAuthService {
   api: IApiService<ApiRequestConfig>;
+
   constructor(api: IApiService<ApiRequestConfig>) {
     this.api = api;
   }
+
   async signIn(username: string, password: string, config?: ApiRequestConfig) {
     return await this.api.post<ISignInResponse>(
       '/auth/sign-in',
@@ -19,6 +21,7 @@ class AuthService implements IAuthService {
       config
     );
   }
+
   async signUp(username: string, password: string, config?: ApiRequestConfig) {
     return await this.api.post<ISignUpResponse>(
       '/auth/sign-up',
@@ -26,6 +29,7 @@ class AuthService implements IAuthService {
       config
     );
   }
+
   async confirmUser(username: string, code: string, config?: ApiRequestConfig) {
     return await this.api.post<ISuccessfulAuthenticationResponse>(
       '/auth/confirm-user',
@@ -33,6 +37,7 @@ class AuthService implements IAuthService {
       config
     );
   }
+
   async confirmPassword(
     username: string,
     newPassword: string,
@@ -45,6 +50,7 @@ class AuthService implements IAuthService {
       config
     );
   }
+
   async resendConfirmationCode(username: string, config?: ApiRequestConfig) {
     return await this.api.post<ISuccessfulAuthenticationResponse>(
       '/auth/resend-confirmation-code',
@@ -52,6 +58,7 @@ class AuthService implements IAuthService {
       config
     );
   }
+
   async forgotPassword(username: string, config?: ApiRequestConfig) {
     return await this.api.post<ISuccessfulAuthenticationResponse>(
       '/auth/forgot-password',
@@ -59,6 +66,7 @@ class AuthService implements IAuthService {
       config
     );
   }
+
   async refreshToken(
     username: string,
     refreshToken: string,
