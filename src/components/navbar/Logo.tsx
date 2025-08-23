@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import reactSvg from '../../assets/react.svg';
+import prismaLogo from '@assets/prisma-logo-nav.png';
 
 type PropTypes = {
   width: number;
@@ -10,8 +10,8 @@ export default function Logo({ width, height }: PropTypes) {
   return (
     <Link to="/">
       <img
-        className={`bg-black p-2`}
-        src={reactSvg}
+        className="rounded-[4px] bg-stone-200 p-1"
+        src={prismaLogo}
         width={width}
         height={height}
         alt="React Logo"

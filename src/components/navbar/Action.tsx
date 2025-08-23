@@ -1,4 +1,4 @@
-import Button from './Button';
+import LinkButton from '../common/LinkButton';
 
 type PropTypes = {
   connected: boolean;
@@ -6,8 +6,14 @@ type PropTypes = {
 export default function Action({ connected }: PropTypes) {
   if (connected) {
     return (
-      <Button data-test="sign-out" to="/auth/sign-out" innerText="Sign Out" />
+      <LinkButton data-test="sign-out" to="/auth/sign-out">
+        Sign Out
+      </LinkButton>
     );
   }
-  return <Button data-test="sign-in" to="/auth/sign-in" innerText="Sign In" />;
+  return (
+    <LinkButton data-test="sign-in" to="/auth/sign-in">
+      Sign In
+    </LinkButton>
+  );
 }

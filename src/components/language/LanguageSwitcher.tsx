@@ -14,7 +14,7 @@ export function LanguageSwitcher() {
       <select
         value={i18n.language}
         onChange={(e) => changeLanguage(e.target.value)}
-        className="min-w-[100px] cursor-pointer appearance-none rounded-md border border-gray-600 bg-gray-800 px-3 py-2 pr-8 text-sm font-medium text-gray-100 shadow-sm transition-colors hover:bg-gray-700 focus:ring-2 focus:ring-cyan-400 focus:outline-none"
+        className="min-w-[100px] cursor-pointer appearance-none rounded-md border border-gray-600 bg-gray-800 px-3 py-1.5 pr-8 text-sm font-medium text-gray-100 shadow-sm transition-colors hover:bg-gray-700 focus:ring-2 focus:ring-cyan-400 focus:outline-none"
       >
         <option value="en" className="bg-gray-800 text-gray-100">
           🇺🇸 English
