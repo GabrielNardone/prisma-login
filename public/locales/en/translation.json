@@ -59,7 +59,7 @@
     },
     "unknownError": {
       "signIn": "Unknown error when requesting user confirmation",
-      "signUn": "Unknown error when signing up",
+      "signUp": "Unknown error when signing up",
       "password": "Unknown error when requesting password change",
       "refresh": "Unexpected error while refreshing your session.\nPlease sign in again."
     }

@@ -1,4 +1,5 @@
 import { LanguageSwitcher } from '../language/LanguageSwitcher';
+import Logo from './Logo';
 
 export default function NavBar() {
   // const [cookies] = useCookies([
@@ -8,7 +9,10 @@ export default function NavBar() {
   // const connected =
   //   !!cookies[StoredCookies.REFRESH_TOKEN] && !!cookies[StoredCookies.USERNAME];
   return (
-    <div className="flex justify-end gap-4 p-2">
+    <div className="flex gap-4 p-2">
+      <Logo width={100} height={50} />
+      <div className="flex-1" />
+      <LanguageSwitcher />
       {/* {connected && (
         <a
           data-test="admin-panel"
@@ -20,7 +24,6 @@ export default function NavBar() {
         </a>
       )}
       <Action connected={connected} /> */}
-      <LanguageSwitcher />
     </div>
   );
 }

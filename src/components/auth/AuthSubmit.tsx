@@ -1,3 +1,5 @@
+import { Spinner } from '../common/Spinner';
+
 import { useTranslation } from '@/hooks/translation/useTranslation';
 
 type PropTypes = {
@@ -10,9 +12,7 @@ export default function AuthSubmit({ loading, ...props }: PropTypes) {
     return (
       <div className="flex h-10 flex-1 items-start justify-center">
         <div className="flex w-full justify-center rounded-md bg-cyan-600 px-4 py-1 font-medium text-white">
-          <span className="material-symbols-outlined pointer-events-none animate-spin">
-            progress_activity
-          </span>
+          <Spinner size="sm" />
         </div>
       </div>
     );

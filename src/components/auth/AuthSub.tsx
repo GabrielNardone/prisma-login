@@ -1,4 +1,4 @@
-import type { IReactChildrenProps } from '@/interfaces/IReactChildren';
+import type { IReactChildrenProps } from '@/interfaces/components/IReactChildren';
 
 export default function AuthSub({ children }: IReactChildrenProps) {
   return (
