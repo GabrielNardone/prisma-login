@@ -20,4 +20,8 @@ export const getSignUpSchema = () =>
       .matches(/[A-Z]/, i18n.t('auth.validation.passwordUppercase'))
       .matches(/[0-9]/, i18n.t('auth.validation.passwordNumber'))
       .matches(/\W/, i18n.t('auth.validation.passwordSpecial')),
+    confirmPassword: yup
+      .string()
+      .required(i18n.t('auth.validation.passwordRequired'))
+      .oneOf([yup.ref('password')], i18n.t('auth.validation.confirmPassword')),
   });

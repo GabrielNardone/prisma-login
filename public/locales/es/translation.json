@@ -20,6 +20,7 @@
       "passwordUppercase": "La contraseña debe contener al menos 1 letra mayúscula",
       "passwordNumber": "La contraseña debe contener al menos 1 número",
       "passwordSpecial": "La contraseña debe contener al menos 1 símbolo",
+      "confirmPassword": "Las contrasenas no coinciden",
       "codeRequired": "El código es obligatorio",
       "codeMinLength": "El código debe tener al menos 6 caracteres",
       "codeType": "El código solo debe contener números",
@@ -37,6 +38,8 @@
       "labels": {
         "username": "Nombre de usuario",
         "newPassword": "Nueva contraseña",
+        "password": "Contraseña",
+        "repeatPassword": "Confirmar contraseña",
         "code": "Código",
         "dniType": "Tipo de DNI",
         "dniNumber": "Número de DNI",

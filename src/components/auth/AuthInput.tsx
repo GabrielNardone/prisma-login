@@ -18,15 +18,15 @@ export default function AuthInput({
   ...props
 }: PropTypes) {
   return (
-    <div className="group relative my-4 flex min-h-14 w-full flex-col font-mono autofill:font-mono">
+    <div className="group my-4 flex min-h-14 w-full flex-col font-mono autofill:font-mono">
       <label
-        className="absolute top-[-8px] left-[16px] z-10 rounded-full bg-white px-2 text-xs font-light text-gray-500 transition-colors duration-200 group-focus-within:bg-cyan-500 group-focus-within:text-white"
+        className="mb-1 px-2 text-sm font-light text-gray-500 transition-colors duration-200 group-focus-within:text-cyan-500 data-[error=true]:text-rose-400"
         htmlFor={name}
       >
         {label}
       </label>
       <Field
-        className="focus:shadow-outline w-full rounded-md border-[1px] border-gray-400 px-5 py-2 text-sm outline-none focus:border-cyan-500 focus:shadow-cyan-500/30 data-[error=true]:border-rose-400"
+        className="focus:shadow-outline w-full rounded-sm border-[1px] border-gray-400 px-5 py-2 text-sm outline-none focus:border-cyan-500 focus:shadow-cyan-500/30 data-[error=true]:border-rose-400"
         type={type}
         id={name}
         name={name}
