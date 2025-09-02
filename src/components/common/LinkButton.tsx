@@ -20,7 +20,7 @@ export default function LinkButton({
   ...props
 }: LinkButtonProps) {
   const baseStyles =
-    'inline-flex items-center justify-center rounded-md font-bold transition-colors hover:cursor-pointer';
+    'inline-flex items-center justify-center rounded-sm font-bold transition-colors hover:cursor-pointer';
 
   const variants = {
     primary: 'bg-cyan-600 text-white hover:bg-cyan-400',

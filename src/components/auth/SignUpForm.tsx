@@ -23,6 +23,7 @@ export default function SignUpForm({ handleSubmit, loading }: PropTypes) {
     gender: '',
     username: '',
     password: '',
+    confirmPassword: '',
   };
   const { t } = useTranslation();
   const signUpSchema = getSignUpSchema();
@@ -75,11 +76,20 @@ export default function SignUpForm({ handleSubmit, loading }: PropTypes) {
             />
             <AuthInput
               name="password"
-              label={t('auth.forms.labels.newPassword')}
+              label={t('auth.forms.labels.password')}
               type="password"
               placeholder="********"
               error={!!errors.password}
               touched={touched.password}
+              data-test="sign-up-password"
+            />
+            <AuthInput
+              name="confirmPassword"
+              label={t('auth.forms.labels.repeatPassword')}
+              type="password"
+              placeholder="********"
+              error={!!errors.confirmPassword}
+              touched={touched.confirmPassword}
               data-test="sign-up-password"
             />
             <AuthSubmit loading={loading} data-test="sign-up-submit" />

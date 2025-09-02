@@ -20,6 +20,7 @@
       "passwordUppercase": "Password must contain at least 1 uppercase letter",
       "passwordNumber": "Password must contain at least 1 number",
       "passwordSpecial": "Password must contain at least 1 symbol",
+      "confirmPassword": "Passwords do not match",
       "codeRequired": "Code is required",
       "codeMinLength": "Code should have at least 6 characters",
       "codeType": "Code should only contain numbers",
@@ -37,6 +38,8 @@
       "labels": {
         "username": "Username",
         "newPassword": "New Password",
+        "password": "Password",
+        "repeatPassword": "Confirm Password",
         "code": "Code",
         "dniType": "DNI Type",
         "dniNumber": "DNI Number",

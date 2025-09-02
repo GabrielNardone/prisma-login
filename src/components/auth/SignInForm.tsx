@@ -45,7 +45,7 @@ export default function SignInForm({ handleSubmit, loading }: PropTypes) {
             />
             <AuthInput
               name="password"
-              label={t('auth.forms.labels.newPassword')}
+              label={t('auth.forms.labels.password')}
               type="password"
               placeholder="********"
               error={!!errors.password}

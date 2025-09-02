@@ -22,7 +22,7 @@ export default function Button({
   ...props
 }: ButtonProps) {
   const baseStyles =
-    'inline-flex items-center justify-center rounded-md font-bold transition-colors hover:cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed';
+    'inline-flex items-center justify-center rounded-sm font-bold transition-colors hover:cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed';
 
   const variants = {
     primary:

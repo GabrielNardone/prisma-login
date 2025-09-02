@@ -35,7 +35,7 @@ export default function ResendConfirmationCodeForm({
       >
         {({ errors, touched }) => (
           <AuthForm>
-            <AuthTitle>{t('auth.forms.titles.confirmPassword')}</AuthTitle>
+            <AuthTitle>{t('auth.forms.titles.resendCode')}</AuthTitle>
             <AuthInput
               name="username"
               label={t('auth.forms.labels.username')}
