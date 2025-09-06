@@ -18,84 +18,75 @@ export const AuthProvider = ({ children }: IReactChildrenProps) => {
   const { t } = useTranslation();
 
   const handleSignIn = useCallback(
-    (username: string, password: string) => {
-      async function signIn(username: string, password: string) {
-        setLoadingState('signIn', true);
-        try {
-          const { accessToken, refreshToken } = await authService.signIn(
-            username,
-            password
+    async (username: string, password: string) => {
+      setLoadingState('signIn', true);
+      try {
+        const { accessToken, refreshToken } = await authService.signIn(
+          username,
+          password
+        );
+        cookieService.setAccessTokenCookie(accessToken);
+        cookieService.setRefreshTokenCookie(refreshToken);
+        cookieService.setUsernameCookie(username);
+        apiService.setAuthentication(accessToken);
+        notificationService.success(t('auth.signInSuccess'));
+        navigate('/about');
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          notificationService.error(error.message);
+        } else {
+          notificationService.error(
+            `${t('auth.unknownError.signIn')}: ${error}`
           );
-          cookieService.setAccessTokenCookie(accessToken);
-          cookieService.setRefreshTokenCookie(refreshToken);
-          cookieService.setUsernameCookie(username);
-          apiService.setAuthentication(accessToken);
-          notificationService.success(t('auth.signInSuccess'));
-          navigate('/about');
-        } catch (error: unknown) {
-          if (error instanceof Error) {
-            notificationService.error(error.message);
-          } else {
-            notificationService.error(
-              `${t('auth.unknownError.signIn')}: ${error}`
-            );
-          }
-        } finally {
-          setLoadingState('signIn', false);
         }
+      } finally {
+        setLoadingState('signIn', false);
       }
-      return signIn(username, password);
     },
     [setLoadingState, navigate, t]
   );
 
   const handleSignUp = useCallback(
-    (username: string, password: string) => {
-      async function signUp(username: string, password: string) {
-        setLoadingState('signUp', true);
-        try {
-          await authService.signUp(username, password);
-          notificationService.success(t('auth.confirmationSent'));
-          notificationService.success(t('auth.signUpSuccess'));
-          navigate('/auth/confirm-user');
-        } catch (error: unknown) {
-          if (error instanceof Error) {
-            notificationService.error(error.message);
-          } else {
-            notificationService.error(
-              `${t('auth.unknownError.signUp')}: ${error}`
-            );
-          }
-        } finally {
-          setLoadingState('signUp', false);
+    async (username: string, password: string) => {
+      setLoadingState('signUp', true);
+      try {
+        await authService.signUp(username, password);
+        notificationService.success(t('auth.confirmationSent'));
+        notificationService.success(t('auth.signUpSuccess'));
+        navigate('/auth/confirm-user');
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          notificationService.error(error.message);
+        } else {
+          notificationService.error(
+            `${t('auth.unknownError.signUp')}: ${error}`
+          );
         }
+      } finally {
+        setLoadingState('signUp', false);
       }
-      return signUp(username, password);
     },
     [setLoadingState, navigate, t]
   );
 
   const handleConfirmUser = useCallback(
-    (username: string, code: string) => {
-      async function confirmUser(username: string, code: string) {
-        setLoadingState('confirmUser', true);
-        try {
-          const response = await authService.confirmUser(username, code);
-          notificationService.success(response.message);
-          navigate('/auth/sign-in');
-        } catch (error: unknown) {
-          if (error instanceof Error) {
-            notificationService.error(error.message);
-          } else {
-            notificationService.error(
-              `${t('auth.unknownError.signIn')}: ${error}`
-            );
-          }
-        } finally {
-          setLoadingState('confirmUser', false);
+    async (username: string, code: string) => {
+      setLoadingState('confirmUser', true);
+      try {
+        const response = await authService.confirmUser(username, code);
+        notificationService.success(response.message);
+        navigate('/auth/sign-in');
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          notificationService.error(error.message);
+        } else {
+          notificationService.error(
+            `${t('auth.unknownError.signIn')}: ${error}`
+          );
         }
+      } finally {
+        setLoadingState('confirmUser', false);
       }
-      return confirmUser(username, code);
     },
     [setLoadingState, navigate, t]
   );
@@ -106,83 +97,70 @@ export const AuthProvider = ({ children }: IReactChildrenProps) => {
   }, [t]);
 
   const handleForgotPassword = useCallback(
-    (username: string) => {
-      async function forgotPassword(username: string) {
-        setLoadingState('forgotPassword', true);
-        try {
-          const response = await authService.forgotPassword(username);
-          notificationService.success(response.message);
-        } catch (error: unknown) {
-          if (error instanceof Error) {
-            notificationService.error(error.message);
-          } else {
-            notificationService.error(
-              `${t('auth.unknownError.password')}: ${error}`
-            );
-          }
-        } finally {
-          setLoadingState('forgotPassword', false);
+    async (username: string) => {
+      setLoadingState('forgotPassword', true);
+      try {
+        const response = await authService.forgotPassword(username);
+        notificationService.success(response.message);
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          notificationService.error(error.message);
+        } else {
+          notificationService.error(
+            `${t('auth.unknownError.password')}: ${error}`
+          );
         }
+      } finally {
+        setLoadingState('forgotPassword', false);
       }
-      return forgotPassword(username);
     },
     [setLoadingState, t]
   );
 
   const handleConfirmPassword = useCallback(
-    (username: string, newPassword: string, code: string) => {
-      async function confirmPassword(
-        username: string,
-        newPassword: string,
-        code: string
-      ) {
-        setLoadingState('confirmPassword', true);
-        try {
-          const response = await authService.confirmPassword(
-            username,
-            newPassword,
-            code
+    async (username: string, newPassword: string, code: string) => {
+      setLoadingState('confirmPassword', true);
+      try {
+        const response = await authService.confirmPassword(
+          username,
+          newPassword,
+          code
+        );
+        notificationService.success(response.message);
+        navigate('/auth/sign-in');
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          notificationService.error(error.message);
+        } else {
+          notificationService.error(
+            `${t('auth.unknownError.password')}: ${error}`
           );
-          notificationService.success(response.message);
-          navigate('/auth/sign-in');
-        } catch (error: unknown) {
-          if (error instanceof Error) {
-            notificationService.error(error.message);
-          } else {
-            notificationService.error(
-              `${t('auth.unknownError.password')}: ${error}`
-            );
-          }
-        } finally {
-          setLoadingState('confirmPassword', false);
         }
+      } finally {
+        setLoadingState('confirmPassword', false);
       }
-      return confirmPassword(username, newPassword, code);
     },
     [setLoadingState, navigate, t]
   );
 
   const handleResendConfirmationCode = useCallback(
-    (username: string) => {
-      async function resendConfirmationCode(username: string) {
-        setLoadingState('resendConfirmationCode', true);
-        try {
-          const response = await authService.resendConfirmationCode(username);
-          notificationService.success(response.message);
-          navigate('/auth/confirm-user');
-        } catch (error: unknown) {
-          if (error instanceof Error) {
-            notificationService.error(error.message);
-          } else {
-            notificationService.error(
-              `${t('auth.unknownError.password')}: ${error}`
-            );
-          }
-        } finally {
-          setLoadingState('resendConfirmationCode', false);
+    async (username: string) => {
+      setLoadingState('resendConfirmationCode', true);
+      try {
+        const response = await authService.resendConfirmationCode(username);
+        notificationService.success(response.message);
+        navigate('/auth/confirm-user');
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          notificationService.error(error.message);
+        } else {
+          notificationService.error(
+            `${t('auth.unknownError.password')}: ${error}`
+          );
         }
+      } finally {
+        setLoadingState('resendConfirmationCode', false);
       }
-      return resendConfirmationCode(username);
     },
     [setLoadingState, navigate, t]
   );
